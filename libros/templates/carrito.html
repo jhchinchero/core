@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4">🛒 Carrito de Libros</h2>
+
+    {% if libros %}
+        <ul class="list-group mb-4">
+            {% for libro in libros %}
+                <li class="list-group-item">
+                    <strong>{{ libro.titulo }}</strong><br>
+                    Editorial: {{ libro.editorial.nombre }}<br>
+                    Autores: {{ libro.mostrar_autores }}<br>
+                    Año: {{ libro.anio_publicacion }}
+                    <form method="post" action="{% url 'libros:quitar_del_carrito' libro.id %}">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-sm btn-outline-danger">✖ Quitar</button>
+                  </form>
+                  {% if user.is_authenticated %}
+<form method="post" action="{% url 'libros:prestar_libro' libro.id %}">
+  {% csrf_token %}
+  
+
+  {% if user.is_authenticated %}
+  <li class="nav-item">
+ 
+    <button type="submit" class="btn btn-primary">Prestar</button>
+  </li>
+  {% else %}
+  <a class="nav-link" href="{% url 'usuarios:login' %}">Iniciar sesión</a>
+  {% endif %}
+
+</form>
+{% else %}
+<p>Debes iniciar sesión para prestar un libro.</p>
+{% endif %}
+
+                </li>
+            {% endfor %}
+        </ul>
+
+       
+
+    {% else %}
+        <p class="text-muted">No has agregado libros al carrito.</p>
+       
+    {% endif %}
+</div>
+{% endblock %}
+

@@ -1,0 +1,35 @@
+
+
+{% extends 'base.html' %}
+{% block title %}Libros{% endblock %}
+
+{% block content %}
+<h1>Todos los libros</h1>
+
+{% for libro in libros %}
+  <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 15px;">
+    <h2>{{ libro.titulo }} ({{ libro.anio }})</h2>
+    <p><strong>ISBN:</strong> {{ libro.isbn }}</p>
+    <p><strong>Editorial:</strong> {{ libro.editorial.nombre }}</p>
+    <p><strong>Autores:</strong>
+      {% for autor in libro.autores.all %}
+        {{ autor.nombre }} {{ autor.apellido }}{% if not forloop.last %}, {% endif %}
+      {% endfor %}
+    </p>
+
+    {% if libro.foto %}
+      <img src="{{ libro.foto.url }}" width="150" alt="Portada">
+    {% endif %}
+
+    {% if libro.ejemplares.count > 0 %}
+      <p><strong>Ejemplares registrados:</strong> {{ libro.ejemplares.count }}</p>
+    {% else %}
+      <p><em>No hay ejemplares registrados para este libro.</em></p>
+    {% endif %}
+  </div>
+{% empty %}
+  <p>No hay libros registrados.</p>
+{% endfor %}
+
+
+{% endblock %}

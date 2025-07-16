@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Perfil{% endblock %}
+
+{% block content %}
+<h2>Mi cuenta</h2>
+<h2>Bienvenido, {{ request.user.nombre }}</h2>
+<p>Email: {{ request.user.email }}</p>
+<p>Teléfono: {{ request.user.telefono }}</p>
+<a href="{% url 'usuarios:logout' %}">Cerrar sesión</a>
+{% endblock %}

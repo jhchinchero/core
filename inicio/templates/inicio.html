@@ -1,0 +1,55 @@
+
+{% extends "base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5">
+    <h1 class="display-4">Bienvenido al Sistema de Biblioteca</h1>
+    <p class="lead">Administra libros, usuarios y préstamos de forma eficiente.</p>
+</div>
+<h2 class="mb-4 text-center">📚 Búsqueda de Libros</h2>
+
+<!-- Formulario de Búsqueda -->
+<form class="row g-3 mb-4" method="GET" action="">
+    <div class="col-md-4">
+        <input type="text" name="titulo" class="form-control" placeholder="Título del libro">
+    </div>
+    <div class="col-md-4">
+        <input type="text" name="autor" class="form-control" placeholder="Nombre del autor">
+    </div>
+    <div class="col-md-3">
+        <input type="text" name="categoria" class="form-control" placeholder="Categoría">
+    </div>
+    <div class="col-md-1">
+        <button type="submit" class="btn btn-primary w-100">Buscar</button>
+    </div>
+</form>
+
+<!-- Resultados de Libros -->
+<div class="row">
+    <!-- Tarjeta de libro (puede ser repetida dinámicamente con backend o JS) -->
+    <!-- Ejemplo de un libro -->
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="Portada del libro">
+            <div class="card-body">
+                <h5 class="card-title">Título del Libro</h5>
+                <p class="card-text">
+                    <strong>Autor:</strong> Juan Pérez<br>
+                    <strong>Categoría:</strong> Ciencia Ficción<br>
+                    <strong>Editorial:</strong> Editorial XYZ<br>
+                    <strong>Año:</strong> 2021
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Repite esto para cada libro encontrado -->
+</div>
+</div>
+
+
+
+  
+{% endblock %}
