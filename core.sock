@@ -1,0 +1,19 @@
+server {
+    listen 80;
+    server_name 187.33.145.18;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+
+    location /static/ {
+        root /home/jh/core;
+    }
+
+    location /media/ {
+        root /home/jh/core;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/jh/core/core.sock;
+    }
+}
